@@ -199,39 +199,40 @@
     <script src="assets/js/custom.js"></script>
 
     <script>
-        let lineIndex = 1; // Starting index for line declarations
+       let lineIndex = 1; // Starting index for line declarations
 
-        document.getElementById('add-line').addEventListener('click', function() {
-            const newLine = `
-                <div class="line-declaration">
-                    <h4>Line Declaration</h4>
-                    <div class="form-group">
-                        <label for="typedeclaration">Type Declaration</label>
-                        <input type="text" class="form-control" name="ligne_declarations[${lineIndex}][typedeclaration]" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="documents">Documents</label>
-                        <input type="file" class="form-control" name="ligne_declarations[${lineIndex}][documents]">
-                    </div>
-                    <div class="form-group">
-                        <label for="datepiece">Date Piece</label>
-                        <input type="date" class="form-control" name="ligne_declarations[${lineIndex}][datepiece]" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="libelle">Libelle</label>
-                        <input type="text" class="form-control" name="ligne_declarations[${lineIndex}][libelle]" required>
-                    </div>
-                    <button type="button" class="btn btn-danger remove-line">Remove</button>
-                </div>`;
-            document.getElementById('line-declarations').insertAdjacentHTML('beforeend', newLine);
-            lineIndex++;
-        });
+document.getElementById('add-line').addEventListener('click', function() {
+    const newLine = `
+        <div class="line-declaration">
+            <h4>Line Declaration</h4>
+            <div class="form-group">
+                <label for="typedeclaration">Type Declaration</label>
+                <input type="text" class="form-control" name="lignededeclarations[${lineIndex}][typedeclaration]" required>
+            </div>
+            <div class="form-group">
+                <label for="documents">Documents</label>
+                <input type="file" class="form-control" name="lignededeclarations[${lineIndex}][documents]">
+            </div>
+            <div class="form-group">
+                <label for="datepiece">Date Piece</label>
+                <input type="date" class="form-control" name="lignededeclarations[${lineIndex}][datepiece]" required>
+            </div>
+            <div class="form-group">
+                <label for="libelle">Libelle</label>
+                <input type="text" class="form-control" name="lignededeclarations[${lineIndex}][libelle]" required>
+            </div>
+            <button type="button" class="btn btn-danger remove-line">Remove</button>
+        </div>`;
+    document.getElementById('line-declarations').insertAdjacentHTML('beforeend', newLine);
+    lineIndex++;
+});
 
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('remove-line')) {
-                e.target.closest('.line-declaration').remove();
-            }
-        });
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-line')) {
+        e.target.closest('.line-declaration').remove();
+    }
+});
+
     </script>
         <style>
     .create-new-button {

@@ -44,6 +44,8 @@ Route::get('/create_declaration', [DeclarationController::class, 'create'])->nam
 Route::post('/create_declaration', [DeclarationController::class, 'store'])->name('create_declaration.store');
 Route::get('/show_declaration', [DeclarationController::class, 'index'])->name('show_declaration');
 Route::get('/declarations/{id}', [DeclarationController::class, 'show'])->name('declarations.show');
+Route::get('/client-declarations/{id}', [DeclarationController::class, 'showclientdeclaration'])->name('clientdeclarations.show');
 Route::get('/declarations/{id}/edit', [DeclarationController::class, 'edit'])->name('declarations.edit');
+Route::get('/client-declarations/{id}/edit', [DeclarationController::class, 'editclientdeclaration'])->name('clientdeclarations.edit');
 Route::put('/declarations/{id}', [DeclarationController::class, 'update'])->name('declarations.update');
 Route::delete('/declarations/{id}', [DeclarationController::class, 'destroy'])->name('declarations.destroy');

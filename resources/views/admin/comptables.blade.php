@@ -27,7 +27,7 @@
                                             <div class="col-lg-12 grid-margin stretch-card">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h2 align="center" class="card-title">Comptables</h2>
+                                                        <h2 align="center" class="card-title">Accountants</h2>
                                                         <div class="table-responsive">
                                                             <table class="table table-striped">
                                                                 <thead>

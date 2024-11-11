@@ -121,8 +121,8 @@
                 <td>{{ $declaration->declaration_date }}</td>
                 <td>{{ $declaration->details}}</td>
                 <td>
-                    <a href="{{ route('declarations.show', $declaration->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('declarations.edit', $declaration->id) }}" class="btn btn-warning">Edit</a>
+                    <a href="{{ route('clientdeclarations.show', $declaration->id) }}" class="btn btn-info">View</a>
+                    <a href="{{ route('clientdeclarations.edit', $declaration->id) }}" class="btn btn-warning">edit</a>
                 </td>
             </tr>
             @endforeach

@@ -31,8 +31,8 @@
     </div>
     <!-- ***** Preloader End ***** -->
 
-    <!-- Header -->
-    <header class="">
+     <!-- Header -->
+     <header class="">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="/"><h2>Accounting <em>Hall</em></h2></a>
@@ -53,11 +53,12 @@
                             @if (Route::has('login'))
                                 @auth
                                 <li class="nav-item">
-    <a href="{{ route('create_declaration') }}" class="nav-link btn btn-success create-new-button">Add New Declaration</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{{ route('show_declaration') }}">My Declarations</a>
-</li>
+                                  <a href="create_client" class="nav-link btn btn-success create-new-button">Add New Client</a>
+                                  <a align="center" href="{{ url()->previous() }}" class="nav-link btn btn-danger create-new-button1">Back</a>
+                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="show_client">My Clients</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                       <x-app-layout></x-app-layout>
                                     </li>
@@ -140,7 +141,6 @@
                 <th>Date</th>
                 <th>Value 1</th>
                 <th>Value 2</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -152,15 +152,6 @@
                 <td>{{ $ligne->datepiece }}</td>
                 <td>{{ $ligne->valeur1 ?? 'No Vlue'}}</td>
                 <td>{{ $ligne->valeur2 ?? 'No Vlue' }}</td>
-                <td>
-                    <a href="{{ route('declarations.show', $declaration->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('declarations.edit', $declaration->id) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('declarations.destroy', $declaration->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form> 
-                </td>
             </tr>
             @endforeach
         </tbody>
@@ -174,6 +165,7 @@
         </div>
       </div>
     </div>
+    
 
 
                 <footer>
@@ -207,6 +199,19 @@
     }
 
     .create-new-button:hover {
+        transform: scale(1.1); /* Zoom effect on hover */
+    }
+    .create-new-button1 {
+        position: fixed;    /* Fixes the position of the button */
+        bottom: 30px;      /* 20px from the bottom */
+        left: 20px;       /* 20px from the right */
+        z-index: 1000;     /* Ensure it's above other content */
+        padding: 10px 20px;  /* Customize padding for the button */
+        font-size: 16px;     /* Adjust font size if necessary */
+        transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+    }
+
+    .create-new-button1:hover {
         transform: scale(1.1); /* Zoom effect on hover */
     }
 </style>

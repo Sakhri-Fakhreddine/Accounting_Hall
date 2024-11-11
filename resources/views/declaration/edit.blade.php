@@ -8,15 +8,16 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Edit Declaration - Consulting Hall</title>
+    <title>Edit declaration - Accounting Hall</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="{{ asset('assets/css/fontawesome.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/templatemo-sixteen.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/owl.css') }}">
+
 </head>
 
 <body>
@@ -29,52 +30,73 @@
     </div>
     <!-- ***** Preloader End ***** -->
 
-    <!-- Header -->
-    <!-- <header class="">
+        <!-- Header -->
+        <header class="">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><h2>Consulting <em>Hall</em></h2></a>
+                <a class="navbar-brand" href="/"><h2>Accounting <em>Hall</em></h2></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">Our Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
+                            <a class="nav-link" href="/">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact Us</a>
                         </li>
                         <li class="nav-item">
                             @if (Route::has('login'))
-                            @auth
-                            <li class="nav-item">
-                                <a href="/">Profile</a>
-                            </li>
-                            @else
-                            <li> <a class="nav-link" href="{{ route('login') }}">Log in</a> </li>
-
-                            @if (Route::has('register'))
-                            <li><a class="nav-link" href="{{ route('register') }}">Register</a> </li>
-                            @endif
-                            @endauth
+                                @auth
+                                <li class="nav-item">
+    <a href="{{ route('create_declaration') }}" class="nav-link btn btn-success create-new-button">Add New Declaration</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('show_declaration') }}">My Declarations</a>
+</li>
+                                    <li class="nav-item dropdown">
+                                      <x-app-layout></x-app-layout>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a class="nav-link" href="{{ route('login') }}">
+                                            Log in
+                                        </a>
+                                    </li>
+                                    @if (Route::has('register'))
+                                        <li>
+                                            <a class="nav-link" href="{{ route('register') }}">
+                                                Register
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endauth
                             @endif
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </header> -->
+    </header>
+   <!-- Banner Starts Here -->
+   <div class="banner header-text">
+    </div>
+    <!-- Banner Ends Here -->
 
-    <div class="container">
-        <h2>Edit Declaration</h2>
-        <form action="{{ route('declarations.update', $declaration->id) }}" method="POST" enctype="multipart/form-data">
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Edit Declaration</h2>
+            </div>
+          </div>
+          <div class="col-md-6" >
+            <div class="product-item">
+            <form action="{{ route('declarations.update', $declaration->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -103,26 +125,45 @@
 
             <button type="submit" class="btn btn-success">Update Declaration</button>
         </form>
-    </div>
-
+              </div>
+            </div>
+          </div>
+          <!-- ////// -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="inner-content">
-                        <p>Copyright &copy; 2020 Consulting Hall.</p>
+                        <p>Copyright &copy; 2024 Accounting Hall.</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap core JavaScript -->
+<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
+<!-- Additional Scripts -->
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <style>
+    .create-new-button {
+        position: fixed;    /* Fixes the position of the button */
+        bottom: 30px;      /* 20px from the bottom */
+        right: 20px;       /* 20px from the right */
+        z-index: 1000;     /* Ensure it's above other content */
+        padding: 10px 20px;  /* Customize padding for the button */
+        font-size: 16px;     /* Adjust font size if necessary */
+        transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+    }
+
+    .create-new-button:hover {
+        transform: scale(1.1); /* Zoom effect on hover */
+    }
+</style>
+
     <script>
         let lineIndex = 1; // Starting index for line declarations
 
@@ -164,3 +205,4 @@
 </body>
 
 </html>
+

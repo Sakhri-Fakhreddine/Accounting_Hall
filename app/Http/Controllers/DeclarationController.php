@@ -79,7 +79,7 @@ class DeclarationController extends Controller
         return view('declaration.index', compact('declarations'));
     }
 
-    // Show the edit form for a specific declaration
+    // Show the edit form for a specific declaration for client
     public function edit($id)
     {
         // Find the declaration
@@ -147,7 +147,7 @@ class DeclarationController extends Controller
         return redirect('/')->with('success', 'Declaration deleted successfully!');
     }
 
-    // Show the details of a specific declaration
+    // Show the details of a specific declaration for client
     public function show($id)
     {
         // Get the authenticated user
@@ -168,5 +168,30 @@ class DeclarationController extends Controller
         $declarationlines = LigneDeclaration::where('declaration_id', $declaration->id)->get();
     
         return view('declaration.show', compact('declaration', 'declarationlines'));
+    }
+    // Show the details of a specific declaration for accountant
+    public function showclientdeclaration($id)
+    {
+        // Find the declaration by ID 
+        $declaration = Declaration::where('id', $id)->first();
+    
+        // Check if the declaration exists
+        if (!$declaration) {
+            return redirect()->back()->withErrors(['message' => 'Declaration not found or does not belong to you.']);
+        }
+    
+        // Get the declaration lines related to the found declaration
+        $declarationlines = LigneDeclaration::where('declaration_id', $declaration->id)->get();
+    
+        return view('declaration.showdeclaration', compact('declaration', 'declarationlines'));
+    }
+
+    // Show the edit form for a specific declaration for accountant
+    public function editclientdeclaration($id)
+    {
+        // Find the declaration
+        $declaration = Declaration::findOrFail($id);
+
+        return view('declaration.editdeclaration', compact('declaration'));
     }
 }
