@@ -27,6 +27,7 @@ class Accountant extends Model
         'code_tva',
         'phone',
         'email',
+        'etat',
     ];
 
     // Define a relationship with the Client model

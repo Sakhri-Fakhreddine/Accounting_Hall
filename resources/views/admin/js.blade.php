@@ -17,3 +17,5 @@
 <!-- Custom js for this page -->
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 <!-- End custom js for this page -->
+ <!-- bootstrap -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

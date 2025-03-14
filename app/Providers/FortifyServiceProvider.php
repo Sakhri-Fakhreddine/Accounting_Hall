@@ -7,11 +7,12 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Http\Request;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,10 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Fortify::createUsersUsing(CreateNewUser::class);
+        // Fortify::register(function (Request $request) {
+        //     $demande = (new CreateNewUser)->create($request->all());
+        //     return redirect()->route('home')->with('success', 'Votre demande a été soumise avec succès.');
+        // });
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);

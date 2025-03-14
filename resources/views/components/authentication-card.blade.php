@@ -1,9 +1,9 @@
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+<div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 1.5rem; background: linear-gradient(to bottom right, black, red);">
     <div>
         {{ $logo }}
     </div>
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div style="width: 100%; max-width: 28rem; margin-top: 1.5rem; padding: 1.5rem; background: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 0.5rem; overflow: hidden;">
         {{ $slot }}
     </div>
 </div>

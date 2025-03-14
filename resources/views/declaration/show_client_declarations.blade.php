@@ -103,31 +103,53 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                <tr>
-                <th>ID</th>
-                <th>Declaration Type</th>
-                <th>Date</th>
-                <th>Details</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            @foreach($declarations as $declaration)
-            <tr>
-                <td>{{ $declaration->id }}</td>
-                <td>{{ $declaration->declaration_type}}</td>
-                <td>{{ $declaration->declaration_date }}</td>
-                <td>{{ $declaration->details}}</td>
-                <td>
-                    <a href="{{ route('clientdeclarations.show', $declaration->id) }}" class="btn btn-info">View</a>
-                    <a href="{{ route('clientdeclarations.edit', $declaration->id) }}" class="btn btn-warning">edit</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-                    </table>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($groupedDeclarations as $month => $declarations)
+                                    <tr>
+                                        <td>{{ $month }}</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="toggleDeclarations('{{ \Illuminate\Support\Str::slug($month) }}', this)">Show Declarations</button>
+                                        </td>
+                                    </tr>
+                                    <tr id="{{ \Illuminate\Support\Str::slug($month) }}" style="display: none;">
+                                        <td colspan="2">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Declaration Type</th>
+                                                        <th>Date</th>
+                                                        <th>Details</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($declarations as $declaration)
+                                                        <tr>
+                                                            <td>{{ $declaration->id }}</td>
+                                                            <td>{{ $declaration->declaration_type }}</td>
+                                                            <td>{{ $declaration->declaration_date }}</td>
+                                                            <td>{{ $declaration->details }}</td>
+                                                            <td>
+                                                                <a href="{{ route('clientdeclarations.show', $declaration->id) }}" class="btn btn-info">View</a>
+                                                                <a href="{{ route('clientdeclarations.edit', $declaration->id) }}" class="btn btn-warning">Edit</a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                 </div>
             </div>
         </div>
@@ -172,6 +194,18 @@
         transform: scale(1.1); /* Zoom effect on hover */
     }
 </style>
+<script>
+    function toggleDeclarations(monthId, button) {
+        var row = document.getElementById(monthId);
+        if (row.style.display === "none") {
+            row.style.display = "";
+            button.innerText = "Hide Declarations";
+        } else {
+            row.style.display = "none";
+            button.innerText = "Show Declarations";
+        }
+    }
+</script>
 </body>
 
 </html>

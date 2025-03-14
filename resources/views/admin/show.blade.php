@@ -26,15 +26,15 @@
                                     <div class="content-wrapper">
                                         <div class="row">
                                             <div class="col-lg-12 grid-margin stretch-card">
-                                                <div class="card">
-                                                <div class="card-body">
+                                                <div class="card" style="max-width: 100%">
+                                                <div class="card-body py-2 px-0 px-sm-3">
                                                         <h2 align="center" class="card-title">Accountant details</h2>
                                                         <br>
-                                                        <div class="table-responsive">
+                                                        <div class="table-responsive p-0" style="max-width: 100%">
                                                         <h2 align="center">{{ $accountant->Nomprenom }}</h2>
                                                         
                                                         <br>
-                                                            <table class="table table-striped">
+                                                            <table class="table table-hover w-100">
                                                                 <!-- <thead>
                                                                     <tr>
                                                                         <th align="center">{{ $accountant->Nomprenom }}</th>
@@ -69,6 +69,21 @@
                                                         <th>Role</th>
                                                         <td>Comptable n°{{ $accountant->idAccountant }}</td>
                                                         </tr>
+                                                        <tr>
+                                                        <th>Etat</th>
+                                                        <td>{{ $accountant->etat }}
+                                                        </td>
+                                                        </tr>
+                                                        <tr>
+                                                        <th>Actions</th>
+                                                        <td>
+                                                            @if($accountant->etat === 'inactive')
+                                                            <a href="{{ route('compte.activer', $accountant->idAccountant) }}" class="btn btn-success">Activer Compte</a>
+                                                            @else
+                                                            <a href="{{ route('compte.desactiver', $accountant->idAccountant) }}" class="btn btn-danger">Desactiver Compte</a>
+                                                            @endif
+                                                        </td>
+                                                        </tr>
                                                        
                                                                 </tbody>
                                                             </table>
@@ -91,7 +106,7 @@
         </div>
         <!-- script -->
         @include('admin.js')
-        <style>
+<style>
     .create-new-button1 {
         position: fixed;    /* Fixes the position of the button */
         bottom: 30px;      /* 20px from the bottom */

@@ -59,7 +59,7 @@
                     </main>
 
                     <footer class="py-16 text-center text-sm text-black">
-                        realised by fakhreddine sakhri
+                        realised by Fakhreddine Sakhri
                     </footer>
                 </div>
             </div>

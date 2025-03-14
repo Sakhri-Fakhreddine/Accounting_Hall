@@ -104,6 +104,10 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- Banner Starts Here -->
     <div class="banner header-text">
     </div> 
+    <div style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 1.5rem; background: linear-gradient(to bottom right, black, red);">
+    <img src="{{ asset('assets/images/Accounting_log-removebg-preview.png') }}" alt="Custom Logo" width="800" height="800">
+    </div>
+    
     <!-- Banner Ends Here -->
 
     

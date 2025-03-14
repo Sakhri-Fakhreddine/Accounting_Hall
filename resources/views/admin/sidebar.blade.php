@@ -8,7 +8,7 @@
             <div class="profile-desc">
               <div class="profile-pic">
                 <div class="count-indicator">
-                  <img class="img-xs rounded-circle " src="admin/assets/images/faces/pic-8.png" alt="">
+                <img src="{{ asset('assets/images/Accounting_log-removebg-preview.png') }}" alt="Custom Logo" width="60" height="60">
                   <span class="count bg-success"></span>
                 </div>
                 <div class="profile-name">
@@ -57,7 +57,7 @@
             <span class="nav-link">Navigation</span>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -70,6 +70,23 @@
                 <i class="mdi mdi-account"></i>
               </span>
               <span class="menu-title">Accountants</span>
-            </a>  
+            </a> 
+          </li> 
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('demandes')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-account-plus"></i>
+              </span>
+              <span class="menu-title">Demandes</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" href="{{url('parametres_par_defaut')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-wrench"></i>
+              </span>
+              <span class="menu-title">Parametres Par Defaut </span>
+            </a>
+          </li>
         </ul>
       </nav>

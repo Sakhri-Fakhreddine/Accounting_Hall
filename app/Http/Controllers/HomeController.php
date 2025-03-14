@@ -9,6 +9,10 @@ class HomeController extends Controller
 {
     public function redirect()
     {
+        // if (!Auth::check()) {
+        //     // Redirect to login if the user is not authenticated
+        //     return redirect()->route('login')->with('error', 'Please log in first.');
+        // }
         $usertype = Auth::user()->usertype;
         $fullname = Auth::user()->name;
         if ($usertype == '0') {
