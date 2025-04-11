@@ -6,9 +6,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\DeclarationController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountantController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\EmailController;
 use App\Http\Middleware\CheckAccountStatus;
+use App\Models\Accountant;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -84,3 +86,9 @@ Route::put('/demandes/{demande}/accept', [DemandeController::class, 'accept'])->
 Route::get('/parametres_par_defaut', [AdminController::class, 'parametres_par_defaut'])->name('parametres_par_defaut');
 Route::get('/parametres_declaration', [AdminController::class, 'parametres_declaration'])->name('parametres_declaration');
 Route::get('/parametres_lignes_declarations', [AdminController::class, 'parametres_lignes_declarations'])->name('parametres_lignes_declarations');
+
+
+// accountant settings routes 
+Route::get('/add_settings', [AccountantController::class, 'addsettings'])->name('add_settings');
+Route::get('/declarations/{id}/update', [AccountantController::class, 'updatesettings'])->name('update.declaration');
+Route::post('/declarations/{id}/save', [AccountantController::class, 'saveUpdatesettings'])->name('save.update.declaration');

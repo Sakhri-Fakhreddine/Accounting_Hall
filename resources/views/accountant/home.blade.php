@@ -74,6 +74,9 @@ https://templatemo.com/tm-546-sixteen-clothing
                                     <li class="nav-item">
                                         <a class="nav-link" href="show_client">My Clients</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="add_settings">Add Settings</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                       <x-app-layout></x-app-layout>
                                     </li>

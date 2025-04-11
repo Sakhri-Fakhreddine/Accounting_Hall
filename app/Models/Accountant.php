@@ -35,4 +35,8 @@ class Accountant extends Model
     {
         return $this->hasMany(Client::class, 'id_accountant', 'idAccountant');
     }
+    public function parametresDeclarations()
+    {
+        return $this->hasMany(Parametres_declarations::class, 'id_accountant', 'idAccountant');
+    }
 }

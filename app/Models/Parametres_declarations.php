@@ -47,6 +47,11 @@ class Parametres_declarations extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
+     public function lignes()
+    {
+        return $this->hasMany(Parametres_lignes_declarations::class, 'idparametresdeclarations', 'id_parametres_declarations');
+    }
     public function accountant()
     {
         return $this->belongsTo(Accountant::class, 'id_accountant', 'idAccountant');

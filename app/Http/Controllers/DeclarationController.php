@@ -7,7 +7,7 @@ use App\Models\Declaration;
 use App\Models\Client;
 use App\Models\LigneDeclaration; 
 use App\Http\Controllers\LignededeclarationController; // Import LigneDeclarationController
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DeclarationController extends Controller
 {
