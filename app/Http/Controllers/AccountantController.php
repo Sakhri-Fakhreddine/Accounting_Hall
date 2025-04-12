@@ -78,6 +78,14 @@ class AccountantController extends Controller
         // Fetch the existing declaration
         $existingDeclaration = Parametres_declarations::find($id);
 
+        // Validate inputs and check existence
+        if (!$accountant) {
+            return redirect()->back()->with('error', 'Accountant not found.');
+        }
+        if (!$existingDeclaration) {
+            return redirect()->back()->with('error', 'Declaration not found.');
+        }
+
         if ($existingDeclaration->id_accountant) {
             // Update existing declaration if it already has an accountant ID
             $existingDeclaration->update([
@@ -86,13 +94,13 @@ class AccountantController extends Controller
             ]);
             $declaration = $existingDeclaration;
         } else {
-            // Create a new declaration with accountant ID if it doesn't have one
+            // Create a new declaration with accountant ID
             $declaration = Parametres_declarations::create([
                 'declaration_type' => $existingDeclaration->declaration_type,
                 'id_accountant' => $accountant->idAccountant,
             ]);
 
-            // Copy existing lines to the new declaration
+            // Copy existing lines to the new declaration (once)
             foreach ($existingDeclaration->lignes as $line) {
                 Parametres_lignes_declarations::create([
                     'libellée' => $line->libellée,
@@ -101,11 +109,41 @@ class AccountantController extends Controller
                     'idparametresdeclarations' => $declaration->id_parametres_declarations,
                 ]);
             }
+
+            // Add only new lines from the request (exclude existing ones)
+            if ($request->has('lines')) {
+                $existingLines = $existingDeclaration->lignes->map(function ($line) {
+                    return [
+                        'libellée' => $line->libellée,
+                        'compte_comptable' => $line->compte_comptable,
+                        'debit_credit' => $line->debit_credit,
+                    ];
+                })->toArray();
+
+                foreach ($request->input('lines') as $lineData) {
+                    // Check if the line is not already in existing lines
+                    $isExisting = collect($existingLines)->contains(function ($existingLine) use ($lineData) {
+                        return $existingLine['libellée'] === $lineData['libellée'] &&
+                            $existingLine['compte_comptable'] === $lineData['compte_comptable'] &&
+                            $existingLine['debit_credit'] === $lineData['debit_credit'];
+                    });
+
+                    if (!$isExisting) {
+                        // Create new line only if it’s not a duplicate
+                        Parametres_lignes_declarations::create([
+                            'libellée' => $lineData['libellée'],
+                            'compte_comptable' => $lineData['compte_comptable'],
+                            'debit_credit' => $lineData['debit_credit'],
+                            'idparametresdeclarations' => $declaration->id_parametres_declarations,
+                        ]);
+                    }
+                }
+            }
         }
 
-        // Handle line updates (add/delete)
-        if ($request->has('lines')) {
-            // Delete existing lines not in the request (if any)
+        // Handle line updates for existing declaration (add/delete)
+        if ($existingDeclaration->id_accountant && $request->has('lines')) {
+            // Delete existing lines not in the request
             $existingLineIds = $declaration->lignes->pluck('id_lignes_parametres_declarations')->toArray();
             $submittedLineIds = array_filter(array_column($request->input('lines', []), 'id'));
 
